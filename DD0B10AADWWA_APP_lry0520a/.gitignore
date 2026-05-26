@@ -1,0 +1,64 @@
+# Object files
+*.o
+*.ko
+*.obj
+*.elf
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Libraries
+#*.lib
+#*.a
+*.la
+*.lo
+
+# Shared objects (inc. Windows DLLs)
+*.dll
+*.so
+*.so.*
+*.dylib
+
+# Executables
+#*.exe
+#*.out
+*.app
+*.i*86
+*.x86_64
+*.hex
+*.bin
+
+# vscode related
+/.vscode/*
+
+# doc related
+/doc/*
+*.html
+
+# useless project
+**/examples/application/opus/*
+
+#keil related
+*.crf
+*.d
+/components/btdm/lib/prj_test_case/Objects/*
+/components/btdm/lib/prj_test_case/Listings/*
+
+#source insight related
+/FR5080H_APP.si4project/*
+/FR5090_SDK.si4project/*
+
+#unconfirmed component
+/components/modules/FlashDB-1.1.2/*
+
+#vscode
+/vscode
+
+/examples/turnkey/lvgl_watch/MDK-ARM/Listings/*
+/examples/turnkey/lvgl_watch/MDK-ARM/Objects/*
+/examples/turnkey/lvgl_watch/MDK-ARM/RTE/*
+!img.hex
+!boot_load_burn.bin
+!controller_code_burn.bin
+!dsp_code_burn.bin

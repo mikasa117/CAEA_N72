@@ -1,0 +1,37 @@
+execUserReset()
+{
+    // set system clock to 24MHz
+    __writeMemory32(0x00016000, 0xE0050000, "Memory");
+
+    // enable qspi0 and cache clock
+    __writeMemory32(0x000453FF, 0xE0050020, "Memory");
+    __writeMemory32(0x00000001, 0xE0050024, "Memory");
+    __writeMemory32(0x00000180, 0xE0050038, "Memory");
+
+    // init qspi0 controller
+    __writeMemory32(0x0000000C, 0xE0050180, "Memory");  // IO0 and IO1 input enable
+    __writeMemory32(0x00000000, 0xE00C0028, "Memory");  // mode bits
+    __writeMemory32(0x0801003B, 0xE00C0004, "Memory");  // read mode
+    __writeMemory32(0x00000002, 0xE00C0008, "Memory");  // write mode
+    __writeMemory32(0x10024005, 0xE00C0038, "Memory");  // poll mode
+    __writeMemory32(0x00000202, 0xE00C000C, "Memory");  // delay config
+    __writeMemory32(0x80890087, 0xE00C0000, "Memory");  // config
+
+    // power on flash
+    __writeMemory32(0x00000001, 0xE0080004, "Memory");
+    __writeMemory32(0x00FB3112, 0xE0080000, "Memory");
+    __delay(1);    // 1ms
+    __writeMemory32(0x00FB3113, 0xE0080000, "Memory");
+    __delay(5);    // 5ms
+
+    // enable cache
+    __writeMemory32(0x00000038, 0xE00B0000, "Memory");
+    __writeMemory32(0x0000003C, 0xE00B0000, "Memory");
+    __writeMemory32(0x0000003E, 0xE00B0000, "Memory");
+    __delay(10);    // 10ms
+    __writeMemory32(0x0000003D, 0xE00B0000, "Memory");
+    __delay(10);    // 10ms
+
+    // set reset vector
+    __writeMemory32(0x08002000, 0xE000ED08, "Memory");
+}
