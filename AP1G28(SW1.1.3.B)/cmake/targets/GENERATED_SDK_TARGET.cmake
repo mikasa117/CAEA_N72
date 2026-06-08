@@ -1,0 +1,242 @@
+cmake_minimum_required(VERSION 3.16)
+
+
+
+set(sources
+    ${PROJ_DIR}/platform/drivers/src/clock/YTM32B1Mx/clock_YTM32B1Mx.c
+    ${PROJ_DIR}/platform/drivers/src/pins/pins_driver.c
+    ${PROJ_DIR}/platform/drivers/src/pins/pins_port_hw_access.c
+    ${PROJ_DIR}/platform/drivers/src/interrupt/interrupt_manager.c
+    ${PROJ_DIR}/platform/drivers/src/dma/dma_driver.c
+    ${PROJ_DIR}/platform/drivers/src/dma/dma_hw_access.c
+    ${PROJ_DIR}/platform/drivers/src/dma/dma_irq.c
+    ${PROJ_DIR}/platform/drivers/src/flexcan/flexcan_driver.c
+    ${PROJ_DIR}/platform/drivers/src/flexcan/flexcan_hw_access.c
+    ${PROJ_DIR}/platform/drivers/src/flexcan/flexcan_irq.c
+    ${PROJ_DIR}/platform/drivers/src/tmu/tmu_driver.c
+    ${PROJ_DIR}/platform/drivers/src/tmu/tmu_hw_access.c
+    ${PROJ_DIR}/platform/drivers/src/ptmr/ptmr_driver.c
+    ${PROJ_DIR}/platform/drivers/src/etmr/etmr_common.c
+    ${PROJ_DIR}/platform/drivers/src/etmr/etmr_hw_access.c
+    ${PROJ_DIR}/platform/drivers/src/etmr/etmr_pwm_driver.c
+    ${PROJ_DIR}/platform/drivers/src/adc/adc_driver.c
+    ${PROJ_DIR}/platform/drivers/src/wdg/wdg_driver.c
+    ${PROJ_DIR}/platform/drivers/src/wdg/wdg_hw_access.c
+    ${PROJ_DIR}/platform/drivers/src/fee/fee.c
+    ${PROJ_DIR}/platform/drivers/src/fee/fls_async_driver.c
+    ${PROJ_DIR}/platform/drivers/src/fee/fls_hw_access.c
+    ${PROJ_DIR}/platform/drivers/src/flash/flash_driver.c
+    ${PROJ_DIR}/platform/devices/YTM32B1ME0/startup/system_YTM32B1ME0.c
+    ${PROJ_DIR}/rtos/osif/osif_baremetal.c
+	${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/DiagSer/CPID_Callback/CPID_Callback.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/DiagSer/DID_Callback/DID_Callback.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/DiagSer/RID_Callback/RID_Callback.c
+	${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/HwIO/HwIO.c
+	${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/Pwm/PwmCtrl/PwmCtrl.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/Pwm/PwmCtrl/PwmCtrl_Cfg.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/Pwm/PwmM/PwmM.c
+	${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/STD_AdFilter/STD_AdcF/STD_AdcF.c
+	${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/STD_AdFilter/STD_AdcM/AdcM_CallBack.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/STD_AdFilter/STD_AdcM/STD_AdcM.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/STD_AdFilter/STD_AdcM/STD_AdcMCfg.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/STD_Battery/STD_BtrCtr/STD_BtrCtr.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/STD_Battery/STD_BtrM/STD_BtrM.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/STD_Battery/STD_BtrDiag/STD_BtrDiag.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/Hall/HallM/HallM.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/Hall/HallCtr/HallCtr.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/LED/LED_DriverCtr/LED_DriverCtr.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/LED/LED_DriverM/LED_DriverM.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/STD_Sensor/STD_SrAdCtr/STD_SrAdCtr.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/STD_Sensor/STD_SrAdCtr/STD_SrAdCtr_Cfg.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/STD_Sensor/STD_SrM/STD_SrM.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/STD_Sensor/STD_SrM/STD_SrM_Cfg.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/AMP/AMP_AdCtr/AMP_AdCtr.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/VOLT/VOLT_AdCtr/VOLT_AdCtr.c
+	${PROJ_DIR}/Sources/BSW/MOUDLE/MCAL_IF/Mcal_App.c
+	${PROJ_DIR}/Sources/BSW/MOUDLE/MCAL_IF/Etmr_If/Etmr_If.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/MCAL_IF/RCU_RSSR_If/RCU_RSSR_If.c
+	${PROJ_DIR}/Sources/BSW/MOUDLE/MCAL_IF/STD_AdcIf/STD_AdcIf.c
+	${PROJ_DIR}/Sources/BSW/MOUDLE/MCAL_IF/STD_DioIf/STD_DioIf_Cfg.c
+	${PROJ_DIR}/Sources/BSW/MOUDLE/MCAL_IF/STD_DioIf/STD_DioIf.c
+	${PROJ_DIR}/Sources/BSW/MOUDLE/MCAL_IF/STD_FlsIf/STD_FlsIf.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/MCAL_IF/STD_McuIf/STD_McuIf.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/MCAL_IF/STD_PortIf/STD_PortIf.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/MCAL_IF/STD_WdgIf/STD_WdgIf.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/STD_Common/STD_Crc/STD_Crc.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/STD_Common/STD_Lib/STD_Lib.c
+	${PROJ_DIR}/Sources/BSW/MOUDLE/StorageService/STD_Eeprom/STD_EepIf/STD_EepIf_Cfg.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/StorageService/STD_Eeprom/STD_EepM/STD_EepCfg.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/StorageService/STD_Eeprom/STD_EepM/STD_EepM.c
+	${PROJ_DIR}/Sources/BSW/MOUDLE/StorageService/STD_Eeprom/STD_EvM/STD_EvM.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/StorageService/STD_Eeprom/STD_EvM/STD_EvMCfg.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/SystemService/EcuM/EcuM_Cfg.c
+	${PROJ_DIR}/Sources/BSW/MOUDLE/SystemService/EcuM/EcuM.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/SystemService/STD_WdgM/STD_WdgM.c
+	${PROJ_DIR}/Sources/BSW/MOUDLE/SystemService/SysM/SysM_Cfg.c
+	${PROJ_DIR}/Sources/BSW/MOUDLE/SystemService/SysM/SysM.c
+	${PROJ_DIR}/Sources/BSW/MOUDLE/SystemService/Task/Task.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/SystemService/Task/TaskCfg.c
+	${PROJ_DIR}/Sources/NET/MOUDLE/Manual/CanApp/CanApp.c
+	${PROJ_DIR}/Sources/NET/MOUDLE/Manual/CanApp/CanAppCfg.c  
+	${PROJ_DIR}/Sources/NET/MOUDLE/Manual/CanCbk/Appl_Can_Callback.c
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Manual/CanCbk/Appl_Ccl_Callback.c
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Manual/CanCbk/Appl_Il_Callback.c
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Manual/CanCbk/Appl_Tp_Callback.c
+	${PROJ_DIR}/Sources/NET/MOUDLE/Manual/CanDcm_Callback/Appl_CPID_Callback.c
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Manual/CanDcm_Callback/Appl_Desc_Callback.c
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Manual/CanDcm_Callback/Appl_DID_Callback.c
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Manual/CanDcm_Callback/Appl_PID_Callback.c
+	${PROJ_DIR}/Sources/NET/MOUDLE/Manual/CanDem/CanDem_Callback.c
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Manual/CanDem/CanDem_Cfg.c
+	${PROJ_DIR}/Sources/NET/MOUDLE/Manual/CanDem/CanDem.c
+	${PROJ_DIR}/Sources/NET/MOUDLE/Manual/CanFbl/Can_Fbl.c
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Manual/CanMain/Can_Main.c
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Manual/CanNm_Callback/Appl_NM_Callback.c
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Manual/CanSec/Random.c
+	${PROJ_DIR}/Sources/NET/MOUDLE/Manual/CanTrcv/Can_Trcv_Cfg.c
+	${PROJ_DIR}/Sources/NET/MOUDLE/Manual/CanTrcv/Can_Trcv.c
+	${PROJ_DIR}/Sources/NET/MOUDLE/Vector/GenyConfig/appdesc.c
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Vector/GenyConfig/appdescdev.c
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Vector/GenyConfig/can_par.c
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Vector/GenyConfig/CanNm_Cfg.c
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Vector/GenyConfig/CanNm_Lcfg.c
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Vector/GenyConfig/CanNm_PBcfg.c
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Vector/GenyConfig/ccl_par.c
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Vector/GenyConfig/desc.c
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Vector/GenyConfig/drv_par.c
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Vector/GenyConfig/il_par.c
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Vector/GenyConfig/Nm_Cfg.c
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Vector/GenyConfig/Nm_Lcfg.c
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Vector/GenyConfig/nmcbdwrp_par.c
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Vector/GenyConfig/tp_par.c
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Vector/GenyConfig/v_par.c
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Vector/StaticCode/Can/can_drv.c
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Vector/StaticCode/CanNm/CanNm.c
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Vector/StaticCode/Ccl/ccl.c
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Vector/StaticCode/Il/il.c
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Vector/StaticCode/Nm/Nm.c
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Vector/StaticCode/Nm/NmCbdWrp.c
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Vector/StaticCode/SipVersionCheck/sip_vers.c
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Vector/StaticCode/Tp/tpmc.c
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Vector/StaticCode/VStdLib/vstdlib.c
+    ${PROJ_DIR}/Sources/NET/RTE/src/RTE_CAN.c
+    ${PROJ_DIR}/Sources/NET/RTE/src/RTE_DCM.c
+    ${PROJ_DIR}/Sources/NET/RTE/src/RTE_DEM.c
+    ${PROJ_DIR}/Sources/APP/MOUDLE/Fridge_Abnormal_Off/Fridge_Exception_Handler.c   
+	${PROJ_DIR}/Sources/APP/MOUDLE/Fridge_Application/Fridge_Application_Config.c
+    ${PROJ_DIR}/Sources/APP/MOUDLE/Fridge_Control_Function/Fridge_Basic_Control.c
+    ${PROJ_DIR}/Sources/APP/MOUDLE/Fridge_Fault/Fault_Diagnosis.c
+    ${PROJ_DIR}/Sources/APP/MOUDLE/Fridge_Memory_Function/Local_Memory.c
+    ${PROJ_DIR}/Sources/APP/RTE/RTE_APP.c
+)
+set(includes
+    ${PROJ_DIR}/platform/drivers/src/clock/YTM32B1Mx
+    ${PROJ_DIR}/platform/drivers/src/pins
+    ${PROJ_DIR}/platform/drivers/src/dma
+    ${PROJ_DIR}/platform/drivers/src/flexcan
+    ${PROJ_DIR}/platform/drivers/src/tmu
+    ${PROJ_DIR}/platform/drivers/src/ptmr
+    ${PROJ_DIR}/platform/drivers/src/etmr
+    ${PROJ_DIR}/platform/drivers/src/adc
+    ${PROJ_DIR}/platform/drivers/src/wdg
+    ${PROJ_DIR}/platform/drivers/src/fee
+    ${PROJ_DIR}/platform/drivers/src/flash
+    ${PROJ_DIR}/platform/drivers/inc
+    ${PROJ_DIR}/platform/drivers/inc/etmr
+    ${PROJ_DIR}/platform/devices/common
+    ${PROJ_DIR}/platform/devices
+    ${PROJ_DIR}/platform/devices/YTM32B1ME0/include
+    ${PROJ_DIR}/platform/devices/YTM32B1ME0/startup
+    ${PROJ_DIR}/CMSIS/Core/Include
+    ${PROJ_DIR}/rtos/osif
+    ${PROJ_DIR}/Include
+	${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/DiagSer/CPID_Callback
+	${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/DiagSer/RID_Callback
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/DiagSer/DID_Callback
+	${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/HwIO
+	${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/Pwm/PwmCtrl
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/Pwm/PwmM
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/STD_AdFilter/STD_AdcF
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/STD_AdFilter/STD_AdcM
+	${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/STD_Battery/STD_BtrCtr
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/STD_Battery/STD_BtrM
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/STD_Battery/STD_BtrDiag
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/Hall/HallM
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/Hall/HallCtr
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/LED/LED_DriverCtr
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/LED/LED_DriverM
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/STD_Sensor/STD_SrAdCtr
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/STD_Sensor/STD_SrM
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/AMP/AMP_AdCtr
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/ComplexDrivers/VOLT/VOLT_AdCtr
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/MCAL_IF
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/MCAL_IF/Etmr_If
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/MCAL_IF/RCU_RSSR_If
+	${PROJ_DIR}/Sources/BSW/MOUDLE/MCAL_IF/STD_AdcIf
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/MCAL_IF/STD_DioIf
+	${PROJ_DIR}/Sources/BSW/MOUDLE/MCAL_IF/STD_FlsIf
+	${PROJ_DIR}/Sources/BSW/MOUDLE/MCAL_IF/STD_McuIf
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/MCAL_IF/STD_PortIf
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/MCAL_IF/STD_WdgIf
+	${PROJ_DIR}/Sources/BSW/MOUDLE/STD_Common/STD_Crc
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/STD_Common/STD_Lib
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/StorageService/STD_Eeprom/STD_EepIf
+	${PROJ_DIR}/Sources/BSW/MOUDLE/StorageService/STD_Eeprom/STD_EepM
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/StorageService/STD_Eeprom/STD_EvM
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/SystemService/EcuM
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/SystemService/STD_WdgM
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/SystemService/SysM
+	${PROJ_DIR}/Sources/BSW/MOUDLE/SystemService/Task
+	${PROJ_DIR}/Sources/NET/MOUDLE/Manual/CanApp
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Manual/CanCbk
+	${PROJ_DIR}/Sources/NET/MOUDLE/Manual/CanDcm_Callback
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Manual/CanDem
+	${PROJ_DIR}/Sources/NET/MOUDLE/Manual/CanDrv
+	${PROJ_DIR}/Sources/NET/MOUDLE/Manual/CanFbl
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Manual/CanMain
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Manual/CanNm_Callback
+	${PROJ_DIR}/Sources/NET/MOUDLE/Manual/CanSec
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Manual/CanTrcv
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Vector/GenyConfig
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Vector/StaticCode/Can
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Vector/StaticCode/CanNm
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Vector/StaticCode/Ccl
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Vector/StaticCode/Common
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Vector/StaticCode/Il
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Vector/StaticCode/Nm
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Vector/StaticCode/SipVersionCheck
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Vector/StaticCode/Tp
+    ${PROJ_DIR}/Sources/NET/MOUDLE/Vector/StaticCode/VStdLib
+    ${PROJ_DIR}/Sources/NET/RTE/inc
+    ${PROJ_DIR}/Sources/APP/MOUDLE/Fridge_Abnormal_Off
+	${PROJ_DIR}/Sources/APP/MOUDLE/Fridge_Application
+    ${PROJ_DIR}/Sources/APP/MOUDLE/Fridge_Control_Function
+    ${PROJ_DIR}/Sources/APP/MOUDLE/Fridge_Fault
+    ${PROJ_DIR}/Sources/APP/MOUDLE/Fridge_Memory_Function
+    ${PROJ_DIR}/Sources/APP/RTE
+    ${PROJ_DIR}/app
+)
+set(priIncludes
+)
+
+add_library(GENERATED_SDK_TARGET STATIC ${sources})
+
+target_include_directories(GENERATED_SDK_TARGET PUBLIC ${includes})
+
+
+target_include_directories(GENERATED_SDK_TARGET PRIVATE ${priIncludes})
+configcore(GENERATED_SDK_TARGET ${CMAKE_SOURCE_DIR})
+
+target_compile_definitions(GENERATED_SDK_TARGET PUBLIC
+    YTM32B1ME0
+    CPU_YTM32B1ME0
+)
+target_compile_options(GENERATED_SDK_TARGET PUBLIC
+    -fdiagnostics-color=always
+)
+
+
+
+target_link_libraries(GENERATED_SDK_TARGET
+    GENERATED_CONFIG_TARGET
+)

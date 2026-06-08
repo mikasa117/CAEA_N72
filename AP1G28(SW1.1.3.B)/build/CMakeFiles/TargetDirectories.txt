@@ -1,0 +1,9 @@
+C:/Users/Administrator/Desktop/AP1G28AACXWA_APP_V1.1.3_20260601(SW1.1.3.B)/build/CMakeFiles/GENERATED_CONFIG_TARGET.dir
+C:/Users/Administrator/Desktop/AP1G28AACXWA_APP_V1.1.3_20260601(SW1.1.3.B)/build/CMakeFiles/GENERATED_SDK_TARGET.dir
+C:/Users/Administrator/Desktop/AP1G28AACXWA_APP_V1.1.3_20260601(SW1.1.3.B)/build/CMakeFiles/AP1G28AACXWA.elf.dir
+C:/Users/Administrator/Desktop/AP1G28AACXWA_APP_V1.1.3_20260601(SW1.1.3.B)/build/CMakeFiles/genbin.dir
+C:/Users/Administrator/Desktop/AP1G28AACXWA_APP_V1.1.3_20260601(SW1.1.3.B)/build/CMakeFiles/genhex.dir
+C:/Users/Administrator/Desktop/AP1G28AACXWA_APP_V1.1.3_20260601(SW1.1.3.B)/build/CMakeFiles/gens19.dir
+C:/Users/Administrator/Desktop/AP1G28AACXWA_APP_V1.1.3_20260601(SW1.1.3.B)/build/CMakeFiles/genlist.dir
+C:/Users/Administrator/Desktop/AP1G28AACXWA_APP_V1.1.3_20260601(SW1.1.3.B)/build/CMakeFiles/edit_cache.dir
+C:/Users/Administrator/Desktop/AP1G28AACXWA_APP_V1.1.3_20260601(SW1.1.3.B)/build/CMakeFiles/rebuild_cache.dir

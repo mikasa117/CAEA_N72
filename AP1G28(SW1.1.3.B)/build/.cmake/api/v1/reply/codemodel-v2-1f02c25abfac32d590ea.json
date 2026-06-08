@@ -1,0 +1,114 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"jsonFile" : "directory-.-Debug-d0094a50bb2071803777.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "AP1G28AACXWA",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "AP1G28AACXWA.elf::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-AP1G28AACXWA.elf-Debug-014738963d45273c39d5.json",
+					"name" : "AP1G28AACXWA.elf",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "GENERATED_CONFIG_TARGET::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-GENERATED_CONFIG_TARGET-Debug-380aac954d44ad797969.json",
+					"name" : "GENERATED_CONFIG_TARGET",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "GENERATED_SDK_TARGET::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-GENERATED_SDK_TARGET-Debug-b271024a790aba590204.json",
+					"name" : "GENERATED_SDK_TARGET",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "genbin::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-genbin-Debug-d5fab5cd18ae04f77a8c.json",
+					"name" : "genbin",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "genhex::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-genhex-Debug-ee77cf1f0cdf1fd110fe.json",
+					"name" : "genhex",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "genlist::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-genlist-Debug-dfaa5f32bd485f5d00be.json",
+					"name" : "genlist",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "gens19::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-gens19-Debug-40585b94350c0757ece5.json",
+					"name" : "gens19",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/Administrator/Desktop/AP1G28AACXWA_APP_V1.1.3_20260601(SW1.1.3.B)/build",
+		"source" : "C:/Users/Administrator/Desktop/AP1G28AACXWA_APP_V1.1.3_20260601(SW1.1.3.B)"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 5
+	}
+}

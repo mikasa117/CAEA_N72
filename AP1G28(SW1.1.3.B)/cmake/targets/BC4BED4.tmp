@@ -1,0 +1,73 @@
+cmake_minimum_required(VERSION 3.16)
+
+
+
+set(sources
+    ${PROJ_DIR}/platform/drivers/src/clock/YTM32B1Mx/clock_YTM32B1Mx.c
+    ${PROJ_DIR}/platform/drivers/src/pins/pins_driver.c
+    ${PROJ_DIR}/platform/drivers/src/pins/pins_port_hw_access.c
+    ${PROJ_DIR}/platform/drivers/src/interrupt/interrupt_manager.c
+    ${PROJ_DIR}/platform/drivers/src/ptmr/ptmr_driver.c
+    ${PROJ_DIR}/platform/drivers/src/wdg/wdg_driver.c
+    ${PROJ_DIR}/platform/drivers/src/wdg/wdg_hw_access.c
+    ${PROJ_DIR}/platform/devices/YTM32B1ME0/startup/system_YTM32B1ME0.c
+    ${PROJ_DIR}/rtos/osif/osif_baremetal.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/STD_Common/STD_Crc/STD_Crc.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/STD_Common/STD_Lib/STD_Lib.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/MCAL_IF/Mcal_App.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/MCAL_IF/STD_McuIf/STD_McuIf.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/MCAL_IF/STD_PortIf/STD_PortIf.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/MCAL_IF/STD_WdgIf/STD_WdgIf.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/SystemService/STD_WdgM/STD_WdgM.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/SystemService/EcuM/EcuM.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/SystemService/EcuM/EcuM_Cfg.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/SystemService/Task/Task.c
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/SystemService/Task/TaskCfg.c
+)
+set(includes
+    ${PROJ_DIR}/platform/drivers/src/clock/YTM32B1Mx
+    ${PROJ_DIR}/platform/drivers/src/pins
+    ${PROJ_DIR}/platform/drivers/src/ptmr
+    ${PROJ_DIR}/platform/drivers/src/wdg
+    ${PROJ_DIR}/platform/drivers/inc
+    ${PROJ_DIR}/platform/devices/common
+    ${PROJ_DIR}/platform/devices
+    ${PROJ_DIR}/platform/devices/YTM32B1ME0/include
+    ${PROJ_DIR}/platform/devices/YTM32B1ME0/startup
+    ${PROJ_DIR}/CMSIS/Core/Include
+    ${PROJ_DIR}/rtos/osif
+    ${PROJ_DIR}/Include
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/STD_Common/STD_Crc
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/STD_Common/STD_Lib
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/MCAL_IF
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/MCAL_IF/STD_PortIf
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/MCAL_IF/STD_McuIf
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/MCAL_IF/STD_WdgIf
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/SystemService/STD_WdgM
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/SystemService/Task
+    ${PROJ_DIR}/Sources/BSW/MOUDLE/SystemService/EcuM
+)
+set(priIncludes
+)
+
+add_library(GENERATED_SDK_TARGET STATIC ${sources})
+
+target_include_directories(GENERATED_SDK_TARGET PUBLIC ${includes})
+
+
+target_include_directories(GENERATED_SDK_TARGET PRIVATE ${priIncludes})
+configcore(GENERATED_SDK_TARGET ${CMAKE_SOURCE_DIR})
+
+target_compile_definitions(GENERATED_SDK_TARGET PUBLIC
+    YTM32B1ME0
+    CPU_YTM32B1ME0
+)
+target_compile_options(GENERATED_SDK_TARGET PUBLIC
+    -fdiagnostics-color=always
+)
+
+
+
+target_link_libraries(GENERATED_SDK_TARGET
+    GENERATED_CONFIG_TARGET
+)
